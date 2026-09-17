@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-LECTION 2024</title>
+<style>
+*{box-sizing:border-box;margin:0;font-family:'Segoe UI',system-ui,sans-serif}
+body{background:#FFFDF5;color:#1a1a1a;min-height:100vh;padding:0}
+.tricolor{height:10px;background:linear-gradient(90deg,#FF9933 33%,#fff 33% 66%,#138808 66%)}
+.wrap{max-width:900px;margin:auto;padding:24px}
+h1{text-align:center;font-size:2.2rem;color:#0b3d91}
+.sub{text-align:center;color:#666;margin:4px 0 20px}
+.card{background:#fff;border-radius:16px;padding:20px;margin-bottom:16px;border:2px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card.saffron{border-top:6px solid #FF9933}.card.white{border-top:6px solid #0b3d91}.card.green{border-top:6px solid #138808}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:end}
+label{font-size:.8rem;color:#666}
+input,select{background:#fff;border:2px solid #ddd;color:#1a1a1a;border-radius:8px;padding:10px;min-width:150px}
+button{background:linear-gradient(135deg,#FF9933,#e07b00);border:0;color:#fff;font-weight:700;font-size:1rem;padding:12px;border-radius:12px;width:100%;cursor:pointer;margin-top:10px}
+button:hover{opacity:.9}
+button.ghost{background:#fff;border:2px solid #ddd;color:#333}
+button.danger{background:linear-gradient(135deg,#d32f2f,#b71c1c)}
+button.ok{background:linear-gradient(135deg,#138808,#0b5e05)}
+.steps{display:flex;gap:8px;margin:16px 0}
+.step{flex:1;text-align:center;padding:10px;border-radius:10px;background:#fff;border:2px solid #ddd;color:#999;font-size:.85rem}
+.step.on{border-color:#138808;color:#0b5e05;background:#e8f5e9;font-weight:700}
+.winners{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.win{background:linear-gradient(135deg,#FF9933,#e07b00);border-radius:14px;padding:16px;text-align:center;color:#fff}
+.run{background:#fff;border:2px solid #138808;border-radius:14px;padding:16px;text-align:center;color:#0b5e05}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;text-align:left;border-bottom:1px solid #eee}
+th{background:#FFF3E0}
+.barrow{display:grid;grid-template-columns:60px 1fr 90px;gap:8px;align-items:center;margin:8px 0;font-size:.9rem}
+.track{background:#f0f0f0;border-radius:99px;height:22px;overflow:hidden}
+.fill2{height:100%;border-radius:99px}
+.msg{padding:10px;border-radius:8px;margin-top:10px;text-align:center;color:#fff}
+.ok2{background:#138808}.err{background:#b71c1c}
+.pill{display:inline-block;padding:4px 12px;border-radius:99px;font-size:.8rem;font-weight:700;color:#fff}
+.lock{color:#888;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+<div class="tricolor"></div>
+<div class="wrap">
+<h1>🇮🇳 E-LECTION 2024 🇮🇳</h1>
+<p class="sub">Nomination → Voting → Results</p>
+<div class="steps"><div class="step" id="s1">1️⃣ Nomination</div><div class="step" id="s2">2️⃣ Voting</div><div class="step" id="s3">3️⃣ Results</div></div>
+<div class="card white" id="adminCard">
+<div class="row"><div style="flex:1"><label>Election status: <span id="phase" class="pill"></span></label></div></div>
+<button id="openVote" class="ok">▶ Start Voting (close nominations)</button>
+<button id="endBtn" class="danger">⏹ End Election & Declare Results</button>
+<button id="reset" class="ghost">↺ New Election (reset all)</button>
+</div>
+<div class="card" id="pNom">
+<h3>➕ Step 1 — Nominate Candidates</h3><br>
+<div class="row"><div><label>Candidate name</label><br><input id="newName" placeholder="e.g. XYZ"></div></div>
+<button id="add">Nominate</button><div id="nmsg"></div>
+<div id="nomList" style="margin-top:12px"></div>
+</div>
+<div class="card" id="pVote">
+<h3>🗳️ Step 2 — Voters Vote</h3><br>
+<div id="voteForm">
+<div class="row"><div><label>Voter ID (1 vote each)</label><br><input id="vid" placeholder="e.g. VOTER-001"></div>
+<div><label>Candidate</label><br><select id="voteFor"></select></div></div>
+<button id="cast">Cast My Vote</button><div id="vmsg"></div>
+</div>
+<div id="voteLock" class="lock" hidden></div>
+</div>
+<div id="out"></div>
+</div>
+</body>
+</html>
